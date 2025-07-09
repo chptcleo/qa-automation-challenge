@@ -13,7 +13,6 @@
     "cypress:run:ui:regression": "cypress run --env grepTags=ui+regression",
     "cypress:run:api:smoke": "cypress run --env grepTags=api+smoke",
     "cypress:run:api:regression": "cypress run --env grepTags=api+regression"
-    
   },
   "keywords": [],
   "author": "",
