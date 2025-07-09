@@ -23,17 +23,16 @@ jobs:
 
       - name: Run Cypress tests
         run: |
-          echo "=========="
-          echo $username
-          echo $password
-          echo $invalidUsername
-          echo $apiBaseUrl
+          echo "The USERNAME is ${{ secrets.USERNAME }}"
+          echo "The PASSWORD is ${{ secrets.PASSWORD }}"
+          echo "The INVALID_USERNAME is ${{ vars.INVALID_USERNAME  }}"
+          echo "The API_BASE_URL is ${{ vars.API_BASE_URL }}"
           npm run cypress:run
         env:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          invalidUsername: ${{ secrets.INVALID_USERNAME }}
-          apiBaseUrl: ${{ secrets.API_BASE_URL }}
+          invalidUsername: ${{ vars.INVALID_USERNAME }}
+          apiBaseUrl: ${{ vars.API_BASE_URL }}
 
       - name: Generate Allure Report
         if: always()
