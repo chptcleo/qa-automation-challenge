@@ -27,13 +27,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: |
-          echo "The USERNAME is ${{ secrets.USERNAME }}"
-          echo "The PASSWORD is ${{ secrets.PASSWORD }}"
-          echo "The INVALID_USERNAME is ${{ vars.CYPRESS_INVALID_USERNAME  }}"
-          echo "The API_BASE_URL is ${{ vars.CYPRESS_API_BASE_URL }}"
-          npm run cypress:run
-        
+        run: npm run cypress:run
 
       - name: Generate Allure Report
         if: always()
@@ -45,10 +39,3 @@ jobs:
         with:
           name: allure-report
           path: allure-report
-
-      - name: Upload Allure Results as artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
