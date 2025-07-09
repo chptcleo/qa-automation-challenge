@@ -9,6 +9,11 @@ on:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
+    env:
+      username: ${{ secrets.USERNAME }}
+      password: ${{ secrets.PASSWORD }}
+      invalidUsername: ${{ vars.INVALID_USERNAME }}
+      apiBaseUrl: ${{ vars.API_BASE_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,11 +33,7 @@ jobs:
           echo "The INVALID_USERNAME is ${{ vars.INVALID_USERNAME  }}"
           echo "The API_BASE_URL is ${{ vars.API_BASE_URL }}"
           npm run cypress:run
-        env:
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          invalidUsername: ${{ vars.INVALID_USERNAME }}
-          apiBaseUrl: ${{ vars.API_BASE_URL }}
+        
 
       - name: Generate Allure Report
         if: always()
