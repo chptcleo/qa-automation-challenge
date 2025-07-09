@@ -10,8 +10,8 @@ describe("View Cart and Remove Product", () => {
 
   before(() => {
     loginPage.visit();
-    const username = Cypress.env("username");
-    const password = Cypress.env("password");
+    const username = Cypress.env("USERNAME");
+    const password = Cypress.env("PASSWORD");
     productPage = loginPage.login(username, password);
     productPage.getTitle().should("have.text", "Products");
     productPage.addToCart(productName);
