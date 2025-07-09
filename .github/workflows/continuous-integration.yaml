@@ -12,8 +12,8 @@ jobs:
     env:
       username: ${{ secrets.USERNAME }}
       password: ${{ secrets.PASSWORD }}
-      invalidUsername: ${{ vars.CYPRESS_INVALID_USERNAME }}
-      apiBaseUrl: ${{ vars.CYPRESS_API_BASE_URL }}
+      CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}
+      CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
