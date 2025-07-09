@@ -7,9 +7,13 @@ on:
       - '**'
 
 jobs:
-  cypress-run:
+  continuous-integration:
     runs-on: ubuntu-latest
-
+    env:
+      username: ${{ secrets.USERNAME }}
+      password: ${{ secrets.PASSWORD }}
+      invalidUsername: ${{ secrets.INVALIDUSERNAME }}
+      apiBaseUrl: ${{ secrets.APIBASEURL }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,10 +31,7 @@ jobs:
 
       - name: Generate Allure Report
         if: always()
-        run: |
-          npx allure generate --clean
-        env:
-          ALLURE_RESULTS_DIR: allure-results
+        run: npm run allure:generate
 
       - name: Upload Allure Report as artifact
         if: always()
