@@ -26,7 +26,7 @@ describe("Petstore API Test", () => {
   it("Inventory Test", {tags:["smoke", "api"]}, () => {
     cy.request({
       method: "GET",
-      url: `${Cypress.env("apiBaseUrl")}/store/inventory`,
+      url: `${Cypress.env("API_BASE_URL")}/store/inventory`,
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status, "Response status code is not 200.").to.be.oneOf([
