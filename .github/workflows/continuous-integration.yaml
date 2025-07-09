@@ -22,12 +22,12 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run cypress:run:ui
+        run: npm run cypress:run:api
         env:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           invalidUsername: ${{ secrets.INVALIDUSERNAME }}
-          apiBaseUrl: ${{ secrets.APIBASEURL }}
+          apiBaseUrl: ${{ secrets.apiBaseUrl }}
 
       - name: Generate Allure Report
         if: always()
