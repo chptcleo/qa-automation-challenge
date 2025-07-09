@@ -52,7 +52,7 @@ describe("Petstore API Test", () => {
   it("Create Order Successfully Test", {tags:["smoke", "api"]}, () => {
     cy.request(
       "POST",
-      `${Cypress.env("apiBaseUrl")}/store/order`,
+      `${Cypress.env("API_BASE_URL")}/store/order`,
       orderInfo
     ).then((response) => {
       expect(response.status, "Response status code is not 200.").to.eq(200);
@@ -68,7 +68,7 @@ describe("Petstore API Test", () => {
   it("Create Order Failed Test", {tags:["regression", "api"]}, () => {
     cy.request({
       method: "POST",
-      url: `${Cypress.env("apiBaseUrl")}/store/order`,
+      url: `${Cypress.env("API_BASE_URL")}/store/order`,
       body: incorrectOrderInfo,
       failOnStatusCode: false,
     }).then((response) => {
@@ -87,7 +87,7 @@ describe("Petstore API Test", () => {
   it("Get Order Successfully Test", {tags:["smoke", "api"]}, () => {
     cy.request(
       "GET",
-      `${Cypress.env("apiBaseUrl")}/store/order/${orderId}`
+      `${Cypress.env("API_BASE_URL")}/store/order/${orderId}`
     ).then((response) => {
       expect(response.status, "Response status code is not 200").to.eq(200);
       expect(
@@ -102,7 +102,7 @@ describe("Petstore API Test", () => {
   it("Get Order Failed With Incorrect Order Id Test", {tags:["regression", "api"]}, () => {
     cy.request({
       method: "GET",
-      url: `${Cypress.env("apiBaseUrl")}/store/order/${incorrectOrderId}`,
+      url: `${Cypress.env("API_BASE_URL")}/store/order/${incorrectOrderId}`,
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status, "Response status code is not 400.").to.eq(400);
@@ -120,7 +120,7 @@ describe("Petstore API Test", () => {
   it("Get Order Failed With Inexistent Order Id Test", {tags:["regression", "api"]}, () => {
     cy.request({
       method: "GET",
-      url: `${Cypress.env("apiBaseUrl")}/store/order/${inexistentOrderId}`,
+      url: `${Cypress.env("API_BASE_URL")}/store/order/${inexistentOrderId}`,
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status, "Response status code is not 404.").to.eq(404);
@@ -136,7 +136,7 @@ describe("Petstore API Test", () => {
   it("Delete Order Successully Test", {tags:["smoke", "api"]}, () => {
     cy.request(
       "DELETE",
-      `${Cypress.env("apiBaseUrl")}/store/order/${orderId}`
+      `${Cypress.env("API_BASE_URL")}/store/order/${orderId}`
     ).then((response) => {
       expect(response.status, "Response status code is not 200.").to.eq(200);
       expect(response.body, "Response body is not empty.").to.be.empty;
@@ -148,7 +148,7 @@ describe("Petstore API Test", () => {
   it("Delete Order Failed With Incorrect Order Id Test", {tags:["regression", "api"]}, () => {
     cy.request({
       method: "DELETE",
-      url: `${Cypress.env("apiBaseUrl")}/store/order/${incorrectOrderId}`,
+      url: `${Cypress.env("API_BASE_URL")}/store/order/${incorrectOrderId}`,
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status, "Response status code is not 400.").to.eq(400);

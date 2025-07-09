@@ -10,8 +10,8 @@ jobs:
   continuous-integration:
     runs-on: ubuntu-latest
     env:
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
+      CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+      CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
       CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}
       CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}
     steps:
