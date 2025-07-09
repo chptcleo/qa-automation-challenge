@@ -1,0 +1,30 @@
+{
+  "name": "qa-automation-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run:ui": "cypress run --env grepTags=ui",
+    "cypress:run:api": "cypress run --env grepTags=api",
+    "cypress:run:smoke": "cypress run --env grepTags=smoke",
+    "cypress:run:ui:smoke": "cypress run --env grepTags=ui+smoke",
+    "cypress:run:ui:regression": "cypress run --env grepTags=ui+regression",
+    "cypress:run:api:smoke": "cypress run --env grepTags=api+smoke",
+    "cypress:run:api:regression": "cypress run --env grepTags=api+regression"
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cypress/grep": "^4.1.0",
+    "@types/node": "^24.0.10",
+    "allure-cypress": "^3.3.0",
+    "cypress": "^14.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
