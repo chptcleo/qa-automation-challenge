@@ -1,4 +1,4 @@
-name: Continous Integration
+name: Continuous Integration
 
 on:
   push:
@@ -23,21 +23,24 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run cypress:run
+        run: npm run cypress:run:ui
 
       - name: Generate Allure Report
+        if: always()
         run: |
           npx allure generate --clean
         env:
           ALLURE_RESULTS_DIR: allure-results
 
       - name: Upload Allure Report as artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: allure-report
 
       - name: Upload Allure Results as artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
