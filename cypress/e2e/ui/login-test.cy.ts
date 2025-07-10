@@ -1,23 +1,22 @@
 import { LoginPage } from "../pages/login-page";
+import { ProductPage } from "../pages/product-page";
 
 describe("Login Test", () => {
   const loginPage: LoginPage = new LoginPage();
+  let productPage: ProductPage;
 
   // @ts-ignore
   it("Happy Path", { tags: ["smoke", "ui"] }, () => {
-    loginPage.visit();
-    const username = Cypress.env("USERNAME");
-    const password = Cypress.env("PASSWORD");
-    const productPage = loginPage.login(username, password);
+    productPage = loginPage.login(
+      Cypress.env("USERNAME"),
+      Cypress.env("PASSWORD")
+    );
     productPage.getTitle().should("have.text", "Products");
   });
 
   // @ts-ignore
   it("Sad Path", { tags: ["regression", "ui"] }, () => {
-    loginPage.visit();
-    const invalidUsername = Cypress.env("INVALID_USERNAME");
-    const password = Cypress.env("PASSWORD");
-    loginPage.login(invalidUsername, password);
+    loginPage.login(Cypress.env("INVALID_USERNAME"), Cypress.env("PASSWORD"));
     loginPage
       .getErrorHeader()
       .should(

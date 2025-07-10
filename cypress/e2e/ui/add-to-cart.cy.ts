@@ -7,10 +7,7 @@ describe("Add to Cart", () => {
   let productPage: ProductPage;
 
   before(() => {
-    loginPage.visit();
-    const username = Cypress.env("USERNAME");
-    const password = Cypress.env("PASSWORD");
-    productPage = loginPage.login(username, password);
+    productPage = loginPage.login(Cypress.env("USERNAME"), Cypress.env("PASSWORD"));
     productPage.getTitle().should("have.text", "Products");
   });
 

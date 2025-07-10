@@ -27,10 +27,7 @@ describe("Checkout Process", () => {
   let checkoutCompletePage: CheckoutCompletePage;
 
   before(() => {
-    loginPage.visit();
-    const username = Cypress.env("USERNAME");
-    const password = Cypress.env("PASSWORD");
-    productPage = loginPage.login(username, password);
+    productPage = loginPage.login(Cypress.env("USERNAME"), Cypress.env("PASSWORD"));
     productPage.getTitle().should("have.text", "Products");
     productPage.addToCart(productName);
     productPage.getShoppingCartBadge().should("have.text", "1");

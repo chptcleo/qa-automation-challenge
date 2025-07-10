@@ -13,13 +13,9 @@ export class LoginPage {
   // This locator is used to find the error header on the login page
   errorHeaderLocator: string = '[data-test="error"]';
 
-  // This method is used to visit the login page based on the base URL defined in cypress.config.ts
-  visit() {
-    cy.visit(Cypress.env("LOGIN_URL"));
-  }
-
   // This method is used to perform the login action by entering the username and password, and clicking the login button
   login(username: string, password: string): ProductPage {
+    cy.visit(Cypress.env("LOGIN_URL"));
     cy.get(this.usernameInputLocator).type(username);
     cy.get(this.passwordInputLocator).type(password);
     cy.get(this.loginButtonLocator).click();

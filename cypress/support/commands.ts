@@ -35,3 +35,15 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add("createOrder", (orderInfoParam) => {
+  cy.request(
+    "POST",
+    `${Cypress.env("API_BASE_URL")}/store/order`,
+    orderInfoParam
+  );
+});
+
+Cypress.Commands.add("deleteOrder", (orderIdParam: number) => {
+  cy.request("DELETE", `${Cypress.env("API_BASE_URL")}/store/order/${orderIdParam}`);
+});
