@@ -2,64 +2,80 @@
 
 ## 🚀 Project Overview
 
-This repository contains an automated testing framework built with **Cypress + TypeScript**, using the **Page Object Model (POM)** design pattern.
-
-It covers:
-- **UI Testing** for the demo website: [https://www.saucedemo.com/](https://www.saucedemo.com/)
-- **API Testing** for the Swagger Petstore: [https://petstore3.swagger.io/](https://petstore3.swagger.io/)
-- **CI Integration** via GitHub Actions to automatically run tests on every push
+This repository provides an automated testing framework using **Cypress** and **TypeScript**, following the **Page Object Model (POM)** design pattern.  
+It supports both **UI** and **API** testing and is fully integrated with **GitHub Actions** for continuous integration.
 
 ### 🔧 Core Features
-- TypeScript support with strong typings
-- Page Object Model for scalable UI test structure
-- Cypress `cy.request` for RESTful API testing
-- GitHub Actions workflow for CI
+
+- **TypeScript support** for type safety and maintainability
+- **Page Object Model** for scalable and reusable UI test code
+- **UI Testing** for [SauceDemo](https://www.saucedemo.com/)
+- **Cypress `cy.request`** for RESTful API automation
+- **API Testing** for [Swagger Petstore](https://petstore3.swagger.io/)
+- **Tag-based test selection** (smoke, regression, ui, api)
+- **Allure reporting** for rich test reports
+- **GitHub Actions CI** to run tests and generate reports on every push
 
 ---
 
 ## 💻 Local Setup Instructions
 
 ### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/your-username/cypress-ts-e2e.git
-cd cypress-ts-e2e
+git clone https://github.com/chptcleo/qa-automation-challenge.git
+cd qa-automation-challenge
 ```
 
-### 2. Install Dependencies
+### 2. Configure Environment Variables
+
+Create `cypress.env.json` to include environment variables.
+
+```bash
+// cypress.env.json
+{
+  "USERNAME": <username>, // For login https://www.saucedemo.com/
+  "PASSWORD": <password>, // For login https://www.saucedemo.com/
+  "INVALID_USERNAME": "invalid_user",
+  "API_BASE_URL": "https://petstore3.swagger.io/api/v3"
+}
+```
+
+### 3. Install Dependencies
+
 ```bash
 npm install
 ```
 
-### 3. Project Structure
-```
-cypress/
-├── e2e/
-│   ├── ui/
-│   │   └── login.cy.ts
-│   └── api/
-│       └── petstore.cy.ts
-├── pages/
-│   └── LoginPage.ts
-├── fixtures/
-│   └── users.json
-├── support/
-│   ├── commands.ts
-│   └── e2e.ts
-```
+### 4. Run Tests Locally
 
-### 4. Run UI Tests Locally
-```bash
-npm run test:ui
-```
+- **Open Cypress UI:**
+  ```bash
+  npm run cypress:open
+  ```
+- **Run all tests:**
+  ```bash
+  npm run cypress:run
+  ```
+- **Run only UI tests:**
+  ```bash
+  npm run cypress:run:ui
+  ```
+- **Run only API tests:**
+  ```bash
+  npm run cypress:run:api
+  ```
+- **Run tests by tag (e.g., smoke):**
+  ```bash
+  npm run cypress:run:smoke
+  ```
 
-### 5. Run API Tests Locally
-```bash
-npm run test:api
-```
+### 5. Generate and View Allure Report
 
-### 6. Run All Tests
+After running tests:
 ```bash
-npm run test:all
+npm run allure:generate
+npm run allure:open
 ```
 
 ---
@@ -67,65 +83,42 @@ npm run test:all
 ## 🤖 CI Pipeline (GitHub Actions)
 
 This project includes a GitHub Actions workflow that:
-- Runs both UI and API test suites on every `push` or `pull_request`
 
-### GitHub Actions Workflow File: `.github/workflows/ci.yml`
-```yaml
-name: Cypress Tests
+- Runs Cypress tests automatically on every `push` to any branch
+- Generates and uploads the Allure test report as an artifact
+- Optionally deploys the Allure report to GitHub Pages for easy web access
 
-on:
-  push:
-  pull_request:
+### How to View CI Test Results
 
-jobs:
-  cypress-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run Cypress tests
-        run: npm run test:all
-```
-
-### 🔍 View Test Results
-After a push or PR:
-1. Go to the "Actions" tab on your GitHub repo
-2. Click the latest workflow run
-3. See the logs and status of each test step
+1. Go to the **Actions** tab in your GitHub repository.
+2. Click the latest workflow run.
+3. Review logs, test status, and download the Allure report artifact.
+4. If GitHub Pages is enabled, open the Allure report link provided in the workflow summary.
 
 ---
 
-## ✅ NPM Scripts Reference
+## 📝 Example Project Structure
 
-```json
-"scripts": {
-  "cypress:open": "cypress open",
-  "test:ui": "cypress run --spec cypress/e2e/ui/*.cy.ts",
-  "test:api": "cypress run --spec cypress/e2e/api/*.cy.ts",
-  "test:all": "cypress run"
-}
 ```
-
----
-
-## 🧩 Future Improvements
-- Add test data via fixtures
-- Integrate test report plugin (e.g., Mochawesome)
-- Environment-specific configuration
-- Parallel test execution
+cypress/
+├── e2e/
+│   ├── ui/
+│   │   └── login-test.cy.ts
+│   └── api/
+│       └── petstore.cy.ts
+├── pages/
+│   └── login-page.ts
+├── support/
+│   ├── commands.ts
+│   └── e2e.ts
+├── fixtures/
+│   └── users.json
+cypress.env.json
+cypress.config.ts
+```
 
 ---
 
 ## 📄 License
-[MIT](LICENSE)
 
+[MIT](LICENSE)

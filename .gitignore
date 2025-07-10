@@ -1,4 +1,6 @@
 cypress.env.json
+cypress.env.*.json
+cypress/screenshots/
 node_modules/
 allure-results/
 allure-report/

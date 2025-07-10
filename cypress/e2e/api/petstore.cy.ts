@@ -34,9 +34,9 @@ describe("Petstore API Test", () => {
       ]);
       if (response.status === 200) {
         expect(
-          response.body.message,
+          JSON.stringify(response.body),
           "Response message does not include expected message"
-        ).to.include("approve");
+        ).to.include("approved").and.include("placed").and.include("delivered");
       }
       if (response.status === 500) {
         expect(

@@ -9,11 +9,13 @@ on:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
+    environment: dev 
     env:
       CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
       CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-      CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}
+      CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
       CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}
+      CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,7 +29,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run cypress:run
+        run: npm run cypress:run:ci
 
       - name: Generate Allure Report
         if: always()
