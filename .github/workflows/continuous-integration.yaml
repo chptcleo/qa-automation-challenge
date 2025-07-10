@@ -29,13 +29,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: |
-          echo "CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}"
-          echo "CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}"
-          echo "CYPRESS_LOGIN_URL: ${{ vars.CYPRESS_LOGIN_URL}}"
-          echo "CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}"
-          echo "CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}"
-          npm run cypress:run:ci
+        run: npm run cypress:run:ci
 
       - name: Generate Allure Report
         if: always()
