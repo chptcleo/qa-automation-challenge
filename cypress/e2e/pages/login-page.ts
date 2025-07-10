@@ -15,7 +15,7 @@ export class LoginPage {
 
   // This method is used to visit the login page based on the base URL defined in cypress.config.ts
   visit() {
-    cy.visit(Cypress.env("BASE_URL"));
+    cy.visit(Cypress.env("LOGIN_URL"));
   }
 
   // This method is used to perform the login action by entering the username and password, and clicking the login button

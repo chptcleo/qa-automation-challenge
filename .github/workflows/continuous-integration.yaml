@@ -13,7 +13,7 @@ jobs:
     env:
       CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
       CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-      CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}
+      CYPRESS_LOGIN_URL: ${{ vars.CYPRESS_LOGIN_URL }}
       CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}
       CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}
     steps:
@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}"
           echo "CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}"
-          echo "CYPRESS_BASE_URL: ${{ vars.CYPRESS_BASE_URL }}"
+          echo "CYPRESS_LOGIN_URL: ${{ vars.CYPRESS_LOGIN_URL}}"
           echo "CYPRESS_API_BASE_URL: ${{ vars.CYPRESS_API_BASE_URL }}"
           echo "CYPRESS_INVALID_USERNAME: ${{ vars.CYPRESS_INVALID_USERNAME }}"
           npm run cypress:run:ci
