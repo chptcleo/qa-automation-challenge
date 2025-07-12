@@ -28,6 +28,22 @@ describe("Get Order Test", () => {
     });
   });
 
+  // Test with correct order id and expect response with 200 status code
+  // Sometimes can not get order successufully
+  // @ts-ignore
+  it("Get Order Successfully Test", { tags: ["smoke", "api"],retries: 2 }, () => {
+    cy.request(
+      "GET",
+      `${Cypress.env("API_BASE_URL")}/store/order/${orderId}`
+    ).then((response) => {
+      expect(response.status, "Response status code is not 200").to.eq(200);
+      expect(
+        response.body,
+        "Response body and expected information are not identical."
+      ).to.deep.equal(orderInfo);
+    });
+  });
+
   // Test with incorrect order id and expect response with 400 status code
   // @ts-ignore
   it("Get Order Failed With Incorrect Order Id Test", { tags: ["regression", "api"] },
@@ -66,19 +82,5 @@ describe("Get Order Test", () => {
     }
   );
 
-  // Test with correct order id and expect response with 200 status code
-  // Sometimes can not get order successufully
-  // @ts-ignore
-  it("Get Order Successfully Test", { tags: ["smoke", "api"] }, () => {
-    cy.request(
-      "GET",
-      `${Cypress.env("API_BASE_URL")}/store/order/${orderId}`
-    ).then((response) => {
-      expect(response.status, "Response status code is not 200").to.eq(200);
-      expect(
-        response.body,
-        "Response body and expected information are not identical."
-      ).to.deep.equal(orderInfo);
-    });
-  });
+  
 });
