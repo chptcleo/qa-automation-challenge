@@ -29,7 +29,7 @@ describe("Get Order Test", () => {
   });
 
   // Test with correct order id and expect response with 200 status code
-  // Sometimes can not get order successufully
+  // Sometimes can not get order successufully so add retry mechanism
   // @ts-ignore
   it("Get Order Successfully Test", { tags: ["smoke", "api"],retries: 2 }, () => {
     cy.request(
